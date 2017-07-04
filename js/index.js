@@ -1,7 +1,7 @@
 var users = [
-	{id: 1, name: 'Jane', surname: 'Doe', email: 'jane@gmail.com', zipcode: 14892},
-	{id: 2, name: 'John', surname: 'Doe', email: 'Johnernie2007@gmail.com', zipcode: 12098},
-	{id: 3, name: 'Cleo', surname: 'Doe', email: 'cleo@smith.com', zipcode: 13030}
+	{id: 1, name: 'Jane', surname: 'Doe', email: 'Jane@gmail.com', zipcode: 14892},
+	{id: 2, name: 'Joe', surname: 'Doe', email: 'JoeD@gmail.com', zipcode: 12098},
+	{id: 3, name: 'Cleo', surname: 'Doe', email: 'Cleo@yahoo.com', zipcode: 13030}
 ];
 
 function findUser (userId) {

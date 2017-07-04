@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>User Registry</title>
-		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css'>
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css'>
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 			<body>
@@ -17,7 +16,6 @@
 				<template id="user-list">
 					<div class="actions">
 						<a id='registerButton' class="btn  btn-primary" v-link="{path: '/add-user'}">
-							<span class="glyphicon glyphicon-plus"></span>
 							Register Now
 						</a>
 					</div>
@@ -83,8 +81,7 @@
 				<br/>
 					<div class="form-group"><b>Zipcode:</b>   {{ user.zipcode }}</div>
 					<br/></br>
-					<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-					<a v-link="'/'">Return to user registry</a>
+					<a class="btn btn-primary" v-link="'/'">Return to user registry</a>
 				</template>
 
 				<template id="user-edit">
