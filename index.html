@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+		<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>User Registry</title>
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css'>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+			<body>
+				<div class="container">
+					<main id="app">
+					<router-view></router-view>
+					</main>
+				</div>
+
+				<template id="user-list">
+					<div class="actions">
+						<a id='registerButton' class="btn  btn-primary" v-link="{path: '/add-user'}">
+							<span class="glyphicon glyphicon-plus"></span>
+							Register Now
+						</a>
+					</div>
+					<hr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+								<th>Zipcode</th>
+								<th class="col-sm-2">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="user in users | filterBy searchKey in 'email'">
+					<td><a v-link="{name: 'user', params: {user_id: user.id}}">{{ user.name }}</a></td>
+					<td><a v-link="{name: 'user', params: {user_id: user.id}}">{{ user.surname }}</a></td>
+								<td>{{ user.email }}</td>
+								<td>
+									{{ user.zipcode }}
+								</td>
+								<td>
+									<a class="btn  btn-warning btn-xs" v-link="{name: 'user-edit', params: {user_id: user.id}}">Edit</a>
+									<a class="btn  btn-danger btn-xs" v-link="{name: 'user-delete', params: {user_id: user.id}}">Delete</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</template>
+
+				<template id="add-user">
+					<h2>Register</h2>
+					<hr>
+					<form v-on:submit="createUser" class="text-center">
+							<div class="form-group">
+							<label for="add-name">First Name</label>
+							<input class="form-control" id="add-name" v-model="user.name" required/>
+						</div>
+					<div class="form-group">
+							<label for="add-name">Last Name</label>
+							<input class="form-control" id="add-surname" v-model="user.surname" required/>
+						</div>
+						<div class="form-group">
+							<label for="add-email">Email</label>
+							<input class="form-control" type="email" id="add-email" v-model="user.email"></input>
+						</div>
+						<div class="form-group">
+							<label for="add-zipcode">Zipcode</label>
+							<input type="number" class="form-control" id="add-zipcode" v-model="user.zipcode"/>
+						</div>
+						<button type="submit" class="btn  btn-primary">Create</button>
+						<a v-link="'/'" class="btn  btn-default">Cancel</a>
+					</form>
+				</template>
+
+				<template id="user">
+					<h2>{{ user.name }} {{ user.surname }}</h2>
+					<hr>	
+					<br/>
+				<div class="form-group"><b>Email: </b>   {{ user.email }}</div>
+				<br/>
+					<div class="form-group"><b>Zipcode:</b>   {{ user.zipcode }}</div>
+					<br/></br>
+					<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+					<a v-link="'/'">Return to user registry</a>
+				</template>
+
+				<template id="user-edit">
+					<h2>Edit User</h2>
+					<hr>
+					<form v-on:submit="updateUser" class="text-center">
+							<div class="form-group">
+							<label for="edit-name">First Name</label>
+							<input class="form-control" id="edit-name" v-model="user.name" required/>
+						</div>
+					<div class="form-group">
+							<label for="edit-surame">Last Name</label>
+							<input class="form-control" id="edit-name" v-model="user.surname" required/>
+						</div>
+						<div class="form-group">
+							<label for="edit-email">Email</label>
+							<input class="form-control" id="edit-email" type="email" v-model="user.email"></input>
+						</div>
+						<div class="form-group">
+							<label for="edit-zipcode">Zipcode</label>
+							<input type="number" class="form-control" id="edit-zipcode" v-model="user.zipcode"/>
+						</div>
+						<button type="submit" class="btn  btn-primary">Save</button>
+						<a v-link="'/'" class="btn  btn-default">Cancel</a>
+					</form>
+				</template>
+
+				<template id="user-delete">
+					<h2>Delete user {{ user.name }} {{ user.surname }}</h2>
+					<hr>
+				</br>
+					<form v-on:submit="deleteUser" class="text-center">
+						<p>The action cannot be undone.</p>
+						<button type="submit" class="btn  btn-danger">Delete</button>
+						<a v-link="'/'" class="btn  btn-default">Cancel</a>
+					</form>
+				</template>
+
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js'></script>
+		<script src="js/index.js"></script>
+	</body>
+</html>
